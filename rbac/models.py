@@ -22,6 +22,7 @@ class Permission(models.Model):
     code = models.CharField(verbose_name="代码",max_length=12)
     is_menu = models.BooleanField(verbose_name="是否是菜单")
     group = models.ForeignKey(to="Group",default=1)
+    menu_group = models.ForeignKey(to="Permission",blank=True,null=True,related_name="menuxx")
 
     class Meta:
         verbose_name_plural = "权限表"

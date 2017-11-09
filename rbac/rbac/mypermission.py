@@ -1,14 +1,14 @@
 
 def session_handle(req,obj):
         url_list = []
-        url_dict = obj.roles.all().values("permissions__is_menu","permissions__title","permissions__url","permissions__group_id","permissions__code","permissions__group__menu_id","permissions__group__menu__title").distinct()
+        url_dict = obj.roles.all().values("permissions__is_menu","permissions__id","permissions__menu_group_id","permissions__title","permissions__url","permissions__group_id","permissions__code","permissions__group__menu_id","permissions__group__menu__title").distinct()
         user = obj.username
         data = {}
         menu_list = []
         for item in url_dict:
-            if not item['permissions__is_menu']:
-                continue
             tpl = {
+                "id":item["permissions__id"],
+                "menu_gp_id":item["permissions__menu_group_id"],
                 'menu_id': item['permissions__group__menu_id'],
                 'menu_title': item['permissions__group__menu__title'],
                 'title': item['permissions__title'],

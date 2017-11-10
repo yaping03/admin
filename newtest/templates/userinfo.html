@@ -1,0 +1,17 @@
+{% extends "lady.html" %}
+{% block content %}
+    {% if perm.has_add %}
+        <p><a href="/userinfo/add">添加</a></p>
+    {% endif %}
+{% for foo in data %}
+    <p>{{ foo.0 }} {{ foo.1 }}
+    {% if perm.has_edit %}
+        <a href="#">编辑</a>
+    {% endif %}
+    {% if perm.has_del %}
+        <a href="#">删除</a>
+    {% endif %}
+    </p>
+{% endfor %}
+
+{% endblock %}
